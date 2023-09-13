@@ -3,7 +3,10 @@ package vkTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import pageobjects.vkApp.PersonalPage;
 import utils.BaseClass;
+import utils.vkSteps.PersonalPageSteps;
 
 import java.net.MalformedURLException;
 
@@ -16,12 +19,12 @@ public class TestPersonalPage extends BaseClass {
 
     @Test
     public void testPublishFromPersonalPage() throws InterruptedException {
-        createPost();
+        PersonalPageSteps.createPost();
     }
 
     @Test
     public void testPublishPostTakePhoto() throws InterruptedException {
-        createPostWithPicture();
+        PersonalPageSteps.createPostWithPicture();
     }
 
     @After

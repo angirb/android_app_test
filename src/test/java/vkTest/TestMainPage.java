@@ -8,6 +8,8 @@ import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
 
 import utils.BaseClass;
+import utils.vkSteps.MainPageSteps;
+
 import java.net.MalformedURLException;
 
 public class TestMainPage extends BaseClass {
@@ -19,22 +21,22 @@ public class TestMainPage extends BaseClass {
 
     @Test
     public void testLikeBtn() {
-        clickLikeBtn();
+        MainPageSteps.clickLikeBtn();
     }
 
     @Test
     public void testForYouPage() {
-        forYouPage();
+        MainPageSteps.forYouPage();
     }
 
     @Test
     public void testNewsPage()  {
-        newsPage();
+        MainPageSteps.newsPage();
     }
 
     @Test
     public void testMainPagePostBtn() throws InterruptedException {
-        mainPagePostBtn();
+        MainPageSteps.mainPagePostBtn();
     }
 
     @After

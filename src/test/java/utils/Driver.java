@@ -7,10 +7,10 @@ import java.net.URL;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import pageobjects.MainPage;
-import pageobjects.PersonalPage;
-import pageobjects.ServicesPage;
-import pageobjects.VkPageMessage;
+import pageobjects.vkApp.MainPage;
+import pageobjects.vkApp.PersonalPage;
+import pageobjects.vkApp.ServicesPage;
+import pageobjects.vkApp.VkPageMessage;
 
 public class Driver {
     protected static AndroidDriver<AndroidElement> driver;

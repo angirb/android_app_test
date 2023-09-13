@@ -1,23 +1,14 @@
 package vkTest;
 
-import pageobjects.MainPage;
-import pageobjects.VkPageMessage;
 import utils.BaseClass;
-import utils.Helper;
-import utils.RandomTextGen;
-import io.appium.java_client.android.nativekey.AndroidKey;
+import utils.vkSteps.MessageSteps;
+
 import org.junit.*;
 
-import static io.appium.java_client.android.nativekey.AndroidKey.HOME;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
-import io.appium.java_client.android.nativekey.KeyEvent;
-
-import java.net.MalformedURLException;
 
 public class TestMessage extends BaseClass {
+    protected MessageSteps messageSteps;
     @Before
     public void openApp() {
         openVk();
@@ -25,18 +16,18 @@ public class TestMessage extends BaseClass {
 
     @Test
     public void sendMsgTest() throws InterruptedException {
-        sendMsg(); // send a message to a user
+       MessageSteps.sendMsg(); // send a message to a user
     }
 
     @Test
     public void sendSongInMsg() throws InterruptedException {
-        sendMusicInMsg();
+        MessageSteps.sendMusicInMsg();
 
     }
 
     @Test
     public void sendGeoLocationMsg() throws InterruptedException {
-        sendGeoLocationInMsg();
+        MessageSteps.sendGeoLocationInMsg();
     }
 
     @After

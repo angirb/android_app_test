@@ -1,7 +1,6 @@
 package utils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,8 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import jdk.tools.jmod.Main;
-import pageobjects.MainPage;
+import pageobjects.vkApp.MainPage;
 
 // This class is to identify popup windows notifications where system is asking to confirm and allow app to use certain phone functions
 public class Watcher {
