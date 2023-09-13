@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 
 public class VkPageMessage extends Helper {
 
-    public VkPageMessage(AndroidDriver<AndroidElement> driver) throws MalformedURLException {
+    public VkPageMessage(AndroidDriver<AndroidElement> driver)  {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

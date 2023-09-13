@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.internal.runners.JUnit4ClassRunner;
+import org.junit.runner.RunWith;
+
 import utils.BaseClass;
 import java.net.MalformedURLException;
 
@@ -15,27 +18,27 @@ public class TestMainPage extends BaseClass {
     }
 
     @Test
-    public void testLikeBtn() throws MalformedURLException {
+    public void testLikeBtn() {
         clickLikeBtn();
     }
 
     @Test
-    public void testForYouPage() throws MalformedURLException {
+    public void testForYouPage() {
         forYouPage();
     }
 
     @Test
-    public void testNewsPage() throws MalformedURLException {
+    public void testNewsPage()  {
         newsPage();
     }
 
     @Test
-    public void testMainPagePostBtn() throws MalformedURLException, InterruptedException {
+    public void testMainPagePostBtn() throws InterruptedException {
         mainPagePostBtn();
     }
 
     @After
-    public void closeApp() throws MalformedURLException, InterruptedException {
+    public void closeApp() throws InterruptedException {
         tearDown();
     }
 

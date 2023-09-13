@@ -13,6 +13,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.Dimension;
@@ -39,7 +40,7 @@ public class Helper {
 
 
 
-    public void swipeUp(AndroidDriver driver, int duration) {
+    public void swipeUp(AndroidDriver<AndroidElement> driver, int duration) {
         Dimension size = driver.manage().window().getSize();
 
         int startX = size.width / 2;

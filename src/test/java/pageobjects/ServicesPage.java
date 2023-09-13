@@ -11,7 +11,7 @@ import utils.Helper;
 import java.net.MalformedURLException;
 
 public class ServicesPage extends Helper {
-    public ServicesPage(AndroidDriver<AndroidElement> driver) throws MalformedURLException {
+    public ServicesPage(AndroidDriver<AndroidElement> driver)  {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

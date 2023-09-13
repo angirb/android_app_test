@@ -24,7 +24,7 @@ public class TestMessage extends BaseClass {
     }
 
     @Test
-    public void sendMsgTest() {
+    public void sendMsgTest() throws InterruptedException {
         sendMsg(); // send a message to a user
     }
 
@@ -38,6 +38,7 @@ public class TestMessage extends BaseClass {
     public void sendGeoLocationMsg() throws InterruptedException {
         sendGeoLocationInMsg();
     }
+
     @After
     public void closeApp() throws InterruptedException {
         tearDown();

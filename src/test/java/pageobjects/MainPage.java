@@ -18,8 +18,8 @@ import java.net.MalformedURLException;
 import java.sql.Driver;
 
 public class MainPage extends Helper {
-    String EMAIL = "input correct email";
-    String PASSWORD = "input correct password";
+    String EMAIL = "dasdasd@gmail.com";
+    String PASSWORD = "password";
 
     public MainPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -125,7 +125,7 @@ public class MainPage extends Helper {
 
     // Methods for tests using Helper class to use webDriver
     public void clickVkApp() {
-        vkApp.click();
+        scrollAndClick("VK");
     }
 
     public void writeEmail() {

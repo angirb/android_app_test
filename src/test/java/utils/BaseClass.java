@@ -6,7 +6,9 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pageobjects.MainPage;
 import pageobjects.PersonalPage;
@@ -16,95 +18,82 @@ import pageobjects.VkPageMessage;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static io.appium.java_client.android.nativekey.AndroidKey.BACK;
 import static io.appium.java_client.android.nativekey.AndroidKey.HOME;
 
-public class BaseClass {
-    // create objects
-    protected static AndroidDriver<AndroidElement> driver;
-    protected MainPage mainPage;
-    protected Helper helper;
-    protected Watcher watcher;
-    protected ServicesPage servicesPage;
-    protected VkPageMessage vkPageMessage;
-    protected PersonalPage personalPage;
+public class BaseClass extends Driver {
 
-
-    @Before
-    public void setUp() throws MalformedURLException {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "android");
-        desiredCapabilities.setCapability("appium:platformVersion", "13");
-//        desiredCapabilities.setCapability("appium:deviceName", "CK7n");
-        desiredCapabilities.setCapability("appium:automationName", "uiAutomator2");
-        desiredCapabilities.setCapability("appium:ensureWebviewsHavePages", true);
-        desiredCapabilities.setCapability("appium:nativeWebScreenshot", true);
-        desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
-        desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
-
-        URL remoteUrl = new URL("http://localhost:4723/wd/hub");
-
-        driver = new AndroidDriver<AndroidElement>(remoteUrl, desiredCapabilities);
-        mainPage = new MainPage(driver);
-        helper = new Helper(driver);
-        watcher = new Watcher(driver);
-        servicesPage = new ServicesPage(driver);
-        vkPageMessage = new VkPageMessage(driver);
-        personalPage = new PersonalPage(driver);
-
-    }
-
-
-
-    public void openVk() {
-        helper.swipeUp(driver, 500);
-        mainPage.clickVkApp();
-    }
-
-    public void login() throws InterruptedException {
-        mainPage.writeEmail();
-        mainPage.clickLoginBtn();
-        mainPage.writePassword();
-        mainPage.clickConfirmBtnPass();
-        Thread.sleep(1000);
+    @BeforeClass
+    public static void beforeClass() throws MalformedURLException, InterruptedException {
+        setUp(); // use set up methods
+        login(); // before starting the test login into account
         watcher.processPopupIfNeeded();
         watcher.systemPopupNotification();
-
-    }
-    public void logOut() {
-        servicesPage.clickServicesPage();
-        servicesPage.clickTopRightMenuBtn();
-        servicesPage.clickServicesPageSettingsBtn();
-        servicesPage.clickAppSettingsBtn();
-        servicesPage.scrollAndClick("Очистить всё и выйти");
-        mainPage.clickAccessBtn();
+        driver.pressKey(new KeyEvent(HOME));
+        driver.pressKey(new KeyEvent(BACK));
     }
 
-    public void sendMsg() {
+    @AfterClass
+    public static void afterClass() {
+        openVk();
+        logOut();
+        driver.pressKey(new KeyEvent(BACK));
+        driver.quit();
 
+    }
+
+
+    protected static void openVk() {
+        helper.swipeUp(driver, 500); // swipe up on main screen to open all apps menu
+        mainPage.clickVkApp(); // search for VK app, if cant be found it will scroll down until it finds and clicks
+    }
+
+    protected static void login() throws InterruptedException {
+        openVk(); // open VK app from all apps menu
+        mainPage.writeEmail(); // input email
+        mainPage.clickLoginBtn(); // click proceed
+        mainPage.writePassword(); // input password
+        mainPage.clickConfirmBtnPass(); // click confirm
+        Thread.sleep(1000); // wait page to load
+        watcher.processPopupIfNeeded(); // click accept window pop up notification
+        watcher.systemPopupNotification(); // click system window pop up notification
+        Thread.sleep(2000); // wait
+
+    }
+    protected static void logOut() {
+        servicesPage.clickServicesPage(); // open Services Page
+        servicesPage.clickTopRightMenuBtn(); // open Settings Icon
+        servicesPage.clickServicesPageSettingsBtn(); // open settings button
+        servicesPage.clickAppSettingsBtn(); // click app settings
+        servicesPage.scrollAndClick("Очистить всё и выйти"); // scroll, search and click clear ALL and EXIT
+        mainPage.clickAccessBtn(); // click accept
+        driver.pressKey(new KeyEvent(HOME)); // press go Home Button
+    }
+
+    protected void sendMsg() throws InterruptedException {
         vkPageMessage.clickVkMessage(); // click Message section from Main page
         vkPageMessage.clickVkMessageAlbKur(); // click Albert Kurnev
         vkPageMessage.clickWriteBar(); // click on write bar to type a message
         vkPageMessage.inputMsgWriteBar(); // input text with random generator
         vkPageMessage.clickVkMessageSendButton(); // click send message
         vkPageMessage.clickGoBackArrow(); // click go back arrow to return on main page
+        Thread.sleep(2000);
     }
 
-    public void sendMusicInMsg() throws InterruptedException {
-
+    protected void sendMusicInMsg() throws InterruptedException {
         vkPageMessage.clickVkMessage();
         vkPageMessage.clickVkMessageAlbKur();
         vkPageMessage.clickAttachBtn();
-
         Thread.sleep(2000);
         vkPageMessage.clickAttachMusicBtn();
         vkPageMessage.setSelectSongById();
         vkPageMessage.clickAttachSong();
         vkPageMessage.clickVkMessageSendButton();
         vkPageMessage.clickGoBackArrow();
+        Thread.sleep(2000);
     }
 
-    public void sendGeoLocationInMsg() throws InterruptedException {
-
+    protected void sendGeoLocationInMsg() throws InterruptedException {
         vkPageMessage.clickVkMessage();
         vkPageMessage.clickVkMessageAlbKur();
         vkPageMessage.clickAttachBtn();
@@ -120,38 +109,32 @@ public class BaseClass {
         vkPageMessage.clickSendCurrentGeo(); // click current geo
         vkPageMessage.clickVkMessageSendButton();
         vkPageMessage.clickGoBackArrow();
-
     }
 
-    public void tearDown() throws InterruptedException {
-
+    protected void tearDown() throws InterruptedException {
         driver.pressKey(new KeyEvent(HOME));
         driver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         helper.isDisplayed(mainPage.clearAllTasks);
         helper.clickElement(mainPage.clearAllTasks);
     }
 
-    public void clickLikeBtn() {
-
+    protected void clickLikeBtn() {
         mainPage.scrollToLikeBtn(); // scroll to any like button on main page
         mainPage.clickLikeBtn(); // click on first like icon
         mainPage.likeBtnIsClicked(); // check if like button was clicked
     }
 
-    public void forYouPage() {
-
+    protected void forYouPage() {
         mainPage.clickForYouPageBtn(); // click for you page from main page
         mainPage.forYouPageIsDisplayed(); // check if for you page is displayed
     }
 
-    public void newsPage()  {
-
+    protected void newsPage()  {
         mainPage.clickNewsPage(); // click news page from main page
         mainPage.newsTitleIsDisplayed(); // check if news title is displayed
     }
-    public void mainPagePostBtn() throws InterruptedException {
-
+    protected void mainPagePostBtn() throws InterruptedException {
         mainPage.clickMainPagePostBtn(); // click create post button
         mainPage.storyBtnIsDisplayed(); // check if button "история" is displayed
         mainPage.clickCreateTextPost(); // click create Post (text)
@@ -161,8 +144,7 @@ public class BaseClass {
         personalPage.isPostPublished(); // check if popup message appeared
     }
 
-    public void createPost() throws InterruptedException {
-
+    protected void createPost() throws InterruptedException {
         personalPage.clickPersonalPage(); // click on Personal Page on Picture
         personalPage.clickPublishBtn(); // click Publish Button on Personal Page
         personalPage.clickCreatePostBtn(); // click create Post (text)
@@ -171,21 +153,21 @@ public class BaseClass {
         Thread.sleep(1000);
         personalPage.isPostPublished(); // check if popup message appeared
     }
-    public void createPostWithPicture() throws InterruptedException {
+    protected void createPostWithPicture() throws InterruptedException {
 
         personalPage.clickPersonalPage(); // click on Personal Page on Picture
         personalPage.clickPublishBtn(); // click Publish Button on Personal Page
         personalPage.clickCreatePhotoPost(); // click on Button Post with Photo
 
-        watcher.processPopupIfNeeded(); // use method to click access buttons
-        watcher.systemPopupNotification();
+        watcher.processPopupIfNeeded(); // click agree button
+        watcher.systemPopupNotification(); // click system agree button
 
         personalPage.clickTakePhoto(); // click on Take Photo button
 
-        watcher.processPopupIfNeeded();
-        watcher.systemPopupNotification();
-        watcher.systemPopupWhenUsingNotificationConfirm();
-
+        watcher.processPopupIfNeeded(); // click agree button
+        watcher.systemPopupNotification(); // click system agree button
+        watcher.systemPopupWhenUsingNotificationConfirm(); // click system agree button
+        watcher.systemPopupWhenUsingNotificationConfirm(); // click system agree button
         mainPage.clickCameraBtnFromPersonalPage(); // take a picture
         mainPage.clickConfirmTakenPhoto(); // confirm picture
         mainPage.clickEditorPostRdyBtn(); // click Rdy "Готово" on right top corner

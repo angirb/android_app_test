@@ -10,22 +10,22 @@ import java.net.MalformedURLException;
 public class TestPersonalPage extends BaseClass {
 
     @Before
-    public void openApp() throws MalformedURLException {
+    public void openApp() {
         openVk();
     }
 
     @Test
-    public void testPublishFromPersonalPage() throws MalformedURLException, InterruptedException {
+    public void testPublishFromPersonalPage() throws InterruptedException {
         createPost();
     }
 
     @Test
-    public void testPublishPostTakePhoto() throws MalformedURLException, InterruptedException {
+    public void testPublishPostTakePhoto() throws InterruptedException {
         createPostWithPicture();
     }
 
     @After
-    public void closeApp() throws MalformedURLException, InterruptedException {
+    public void closeApp() throws InterruptedException {
         tearDown();
     }
 }
