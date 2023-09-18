@@ -2,13 +2,6 @@ package vkTest;
 
 import static org.junit.Assert.assertEquals;
 
-import static utils.vkSteps.LoginSteps.login;
-
-import org.junit.Test;
-
-import utils.BaseClass;
-import utils.vkSteps.LoginSteps;
-
 //public class TestLogin extends BaseClass {
 //
 //

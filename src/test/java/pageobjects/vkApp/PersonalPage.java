@@ -6,11 +6,9 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
-import utils.BaseClass;
+
 import utils.Helper;
 import utils.RandomTextGen;
-
-import java.net.MalformedURLException;
 
 public class PersonalPage extends Helper {
 

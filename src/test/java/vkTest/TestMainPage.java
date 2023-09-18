@@ -2,17 +2,12 @@ package vkTest;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.internal.runners.JUnit4ClassRunner;
-import org.junit.runner.RunWith;
 
-import utils.BaseClass;
+import pageobjects.vkApp.BaseTestVk;
 import utils.vkSteps.MainPageSteps;
 
-import java.net.MalformedURLException;
-
-public class TestMainPage extends BaseClass {
+public class TestMainPage extends BaseTestVk {
 
     @Before
     public void openApp() {

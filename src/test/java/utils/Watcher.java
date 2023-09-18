@@ -1,5 +1,7 @@
 package utils;
 
+import static io.appium.java_client.android.nativekey.AndroidKey.BACK;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -9,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import pageobjects.vkApp.MainPage;
 
 // This class is to identify popup windows notifications where system is asking to confirm and allow app to use certain phone functions
@@ -61,5 +65,17 @@ public class Watcher {
             }
         } catch (Exception e) {
         } // Popup element not found or not displayed, continue with the flow
+    }
+
+    public void closeAllTasks() {
+        try {
+            WebElement clearBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.ImageView[@content-desc=\"Clear all\" and @resource-id=\"com.transsion.hilauncher:id/ts_btn_recents_clear\"]")));
+            if (clearBtn.isDisplayed()) {
+                clearBtn.click();
+            } else {
+                driver.pressKey(new KeyEvent(BACK));
+            }
+        } catch (Exception e) {
+        }
     }
 }

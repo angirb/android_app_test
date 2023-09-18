@@ -7,6 +7,7 @@ import java.net.URL;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import pageobjects.dzenNews.DzenNewsPageObjects;
 import pageobjects.vkApp.MainPage;
 import pageobjects.vkApp.PersonalPage;
 import pageobjects.vkApp.ServicesPage;
@@ -20,6 +21,7 @@ public class Driver {
     protected static ServicesPage servicesPage;
     protected static VkPageMessage vkPageMessage;
     protected static PersonalPage personalPage;
+    protected static DzenNewsPageObjects dzenNewsPageObjects;
 
     public static void setUp() throws MalformedURLException, InterruptedException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -41,6 +43,7 @@ public class Driver {
         servicesPage = new ServicesPage(driver);
         vkPageMessage = new VkPageMessage(driver);
         personalPage = new PersonalPage(driver);
+        dzenNewsPageObjects = new DzenNewsPageObjects(driver);
 
     }
 }

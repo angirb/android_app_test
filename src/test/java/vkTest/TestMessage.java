@@ -1,13 +1,13 @@
 package vkTest;
 
-import utils.BaseClass;
+import pageobjects.vkApp.BaseTestVk;
 import utils.vkSteps.MessageSteps;
 
 import org.junit.*;
 
 
 
-public class TestMessage extends BaseClass {
+public class TestMessage extends BaseTestVk {
     protected MessageSteps messageSteps;
     @Before
     public void openApp() {

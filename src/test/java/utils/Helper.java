@@ -98,6 +98,7 @@ public class Helper {
         }
     }
 
+
     public void scrollAndClick(String selector) {
         String locator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + selector + "\").instance(0))";
         driver.findElementByAndroidUIAutomator(locator).click();

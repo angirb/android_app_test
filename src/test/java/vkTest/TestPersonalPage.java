@@ -4,13 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pageobjects.vkApp.PersonalPage;
-import utils.BaseClass;
+import pageobjects.vkApp.BaseTestVk;
 import utils.vkSteps.PersonalPageSteps;
 
-import java.net.MalformedURLException;
-
-public class TestPersonalPage extends BaseClass {
+public class TestPersonalPage extends BaseTestVk {
 
     @Before
     public void openApp() {
