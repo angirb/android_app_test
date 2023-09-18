@@ -1,6 +1,5 @@
 package vkTest;
 
-import pageobjects.vkApp.BaseTestVk;
 import utils.vkSteps.MessageSteps;
 
 import org.junit.*;

@@ -1,6 +1,6 @@
 package utils.vkSteps;
 
-import pageobjects.vkApp.BaseTestVk;
+import vkTest.BaseTestVk;
 import utils.Driver;
 
 public class LoginSteps extends Driver {

@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pageobjects.vkApp.BaseTestVk;
 import utils.vkSteps.PersonalPageSteps;
 
 public class TestPersonalPage extends BaseTestVk {

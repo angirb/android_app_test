@@ -1,4 +1,4 @@
-package pageobjects.vkApp;
+package vkTest;
 
 
 import io.appium.java_client.android.nativekey.AndroidKey;
